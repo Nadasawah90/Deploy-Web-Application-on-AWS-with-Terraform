@@ -20,8 +20,7 @@ Terraform → AWS Resources → EC2 → Shell Script → Java/Tomcat Application
 
 4- EC2: Host the Java application.
 
-5- Shell Script: Install Java, Tomcat, and deploy the application on EC2 & Tomcat: Run the Java web application.
-
+5- Shell Script: Install Java, Tomcat, and deploy the application on EC2 .
 6- Load Balancer: Receive traffic on port 80 and forward it to Tomcat.
 
 7- RDS: Provide the managed database for the application.
