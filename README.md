@@ -30,7 +30,7 @@ Terraform → AWS Resources → EC2 → Shell Script → Java/Tomcat Application
 9- Memcached: Provide caching to improve application performance.
 
 Steps : 
-# on my linux PC 
+# on VM  
 1- Download terraform form the official link of terraform  on the centos VM as bleow : 
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
@@ -42,10 +42,12 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 # on AWS 
--create User IAM with administrator access 
+1- create User IAM with administrator access 
 
--to terrafor access on the AWS account should have access key and secrete key 
-fromm the user created " create access key" 
+2-to terraform access on the AWS account should have access key and secrete key 
+from the user created " create access key" 
 
-####### 
-- create VPS  on AWS  
+3- create VPS  on AWS  " Default VPC " ==> vpc-01560374a80b9a09a
+4- Default subnet 
+5- 
+
