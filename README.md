@@ -43,11 +43,39 @@ sudo ./aws/install
 
 # on AWS 
 1- create User IAM with administrator access 
+<img width="1886" height="813" alt="image" src="https://github.com/user-attachments/assets/6b8661d1-e1c2-4ee9-97e2-44a73a044d8e" />
 
 2-to terraform access on the AWS account should have access key and secrete key 
 from the user created " create access key" 
+<img width="1887" height="797" alt="image" src="https://github.com/user-attachments/assets/143d463b-b94f-4d92-96ba-9573663ed091" />
 
-3- create VPS  on AWS  " Default VPC " ==> vpc-01560374a80b9a09a
+
+3- create VPS  on AWS  " Default VPC " ==> 
+<img width="887" height="202" alt="image" src="https://github.com/user-attachments/assets/9f788c2b-94ba-4ef8-957d-c154ede607a8" />
+
 4- Default subnet 
-5- 
+<img width="1190" height="42" alt="image" src="https://github.com/user-attachments/assets/d2588aa8-c720-4397-b5be-5412675a0f31" />
+
+4- edit on file vpc.tf 
+with VPC id and subnet id 
+issue "" missing 
+<img width="1187" height="652" alt="image" src="https://github.com/user-attachments/assets/e0b03936-16fb-42c3-bd6b-0946620ae213" />
+after fix it 
+i have face time sync 
+issue time sync :
+<img width="1655" height="132" alt="image" src="https://github.com/user-attachments/assets/909dcc0d-cb50-4cf1-9b19-b4d53346e64e" />
+
+
+
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/c4de3fcd-250c-40ba-a842-3d314f66dd95" />
+
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/3d700173-fc3f-413c-8119-b41033510bd3" />
+
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/70734a5e-b661-4101-94c3-514972cbd6c3" />
+
+<img width="1191" height="577" alt="image" src="https://github.com/user-attachments/assets/b3fd35dc-1423-4b7a-b4b9-b6258602bda6" />
+
+
+
+
 
