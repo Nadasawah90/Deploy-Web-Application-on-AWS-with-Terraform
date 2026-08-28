@@ -74,6 +74,24 @@ issue time sync :
 <img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/70734a5e-b661-4101-94c3-514972cbd6c3" />
 
 <img width="1191" height="577" alt="image" src="https://github.com/user-attachments/assets/b3fd35dc-1423-4b7a-b4b9-b6258602bda6" />
+<img width="1127" height="893" alt="image" src="https://github.com/user-attachments/assets/aca5c3d4-0d3d-4a58-a211-3a0ed6ed8dd1" />
+
+# db instacne createing successfuuly : 
+
+<img width="1550" height="247" alt="image" src="https://github.com/user-attachments/assets/fb343540-90a8-4c27-903a-32bacee07f35" />
+
+# creating broker rabbitmq in progress : 
+<img width="1535" height="270" alt="image" src="https://github.com/user-attachments/assets/43f06998-b631-4921-add1-18a7ec8a24d5" />
+# errot in instance reh instance : 
+<img width="1668" height="195" alt="image" src="https://github.com/user-attachments/assets/a3246d08-fde2-4264-bcea-b09187868cdf" />
+
+check key security ssh rsh 
+
+<img width="858" height="143" alt="image" src="https://github.com/user-attachments/assets/2312a945-87fd-4fe1-b30e-ba5406ef5266" />
+
+Then import the public key into AWS:
+
+
 
 
 
