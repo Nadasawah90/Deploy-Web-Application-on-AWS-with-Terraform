@@ -99,6 +99,9 @@ check crating progress :
 
 to access my app should use elb with port 80as it is forward to app instance on port 8080 : 
 
+<img width="1307" height="162" alt="image" src="https://github.com/user-attachments/assets/c218f5ad-6cb5-44ec-ab99-b4f08cf0a74f" />
+
+
 
 
 
