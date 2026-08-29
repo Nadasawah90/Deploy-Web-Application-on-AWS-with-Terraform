@@ -49,7 +49,7 @@ sudo ./aws/install
 from the user created " create access key" 
 <img width="1887" height="797" alt="image" src="https://github.com/user-attachments/assets/143d463b-b94f-4d92-96ba-9573663ed091" />
 
-
+note on all files we will let terraform create new VPC and subnet network with CIDR automatiaally only using IAM creditnilas on the AWS configure and spwcicif which reqgion we will use only to deploy app .so we not need to doe the three firstly steps before as i change the file to be automated more .
 3- create VPS  on AWS  " Default VPC " ==> 
 <img width="887" height="202" alt="image" src="https://github.com/user-attachments/assets/9f788c2b-94ba-4ef8-957d-c154ede607a8" />
 
@@ -81,15 +81,23 @@ issue time sync :
 <img width="1550" height="247" alt="image" src="https://github.com/user-attachments/assets/fb343540-90a8-4c27-903a-32bacee07f35" />
 
 # creating broker rabbitmq in progress : 
+
+<img width="642" height="230" alt="image" src="https://github.com/user-attachments/assets/68f1c02b-f876-45cd-9096-4c7c31d06eae" />
+
 <img width="1535" height="270" alt="image" src="https://github.com/user-attachments/assets/43f06998-b631-4921-add1-18a7ec8a24d5" />
-# errot in instance reh instance : 
-<img width="1668" height="195" alt="image" src="https://github.com/user-attachments/assets/a3246d08-fde2-4264-bcea-b09187868cdf" />
+# to cretae instance may be required key pair as the below error with name terrform 
+<img width="1640" height="111" alt="image" src="https://github.com/user-attachments/assets/a4b54309-f489-4865-8cb5-8e4ff187f199" />
+create it 
+<img width="1623" height="371" alt="image" src="https://github.com/user-attachments/assets/4d79ae2e-bfa9-4b4f-82fa-4b838904a8c1" />
+on VM : 
+<img width="755" height="108" alt="image" src="https://github.com/user-attachments/assets/33f22cc6-2272-45a6-90a4-0106a96da102" />
+check crating progress : 
 
-check key security ssh rsh 
+<img width="1648" height="227" alt="image" src="https://github.com/user-attachments/assets/cf5b3cfb-929a-4aea-9775-78cd2b433c76" />
 
-<img width="858" height="143" alt="image" src="https://github.com/user-attachments/assets/2312a945-87fd-4fe1-b30e-ba5406ef5266" />
+<img width="1597" height="363" alt="image" src="https://github.com/user-attachments/assets/6fdbaf05-befa-4c6f-8774-72c7a7397156" />
 
-Then import the public key into AWS:
+to access my app should use elb with port 80as it is forward to app instance on port 8080 : 
 
 
 
