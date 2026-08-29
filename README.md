@@ -101,6 +101,8 @@ to access my app should use elb with port 80as it is forward to app instance on 
 
 <img width="1307" height="162" alt="image" src="https://github.com/user-attachments/assets/c218f5ad-6cb5-44ec-ab99-b4f08cf0a74f" />
 access elb : 
+<img width="1575" height="291" alt="image" src="https://github.com/user-attachments/assets/6b94f193-7f05-4e43-82e8-8b4aac76083e" />
+
 <img width="1811" height="940" alt="image" src="https://github.com/user-attachments/assets/d68345c4-f869-4ef6-9101-0359a462a97c" />
 
 
