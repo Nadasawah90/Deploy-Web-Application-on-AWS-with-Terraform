@@ -28,6 +28,16 @@ Terraform → AWS Resources → EC2 → Shell Script → Java/Tomcat Application
 8- RabbitMQ: Provide messaging and asynchronous communication.
 
 9- Memcached: Provide caching to improve application performance.
+terraform files incluse : 
+terraform.pem ==> key pair of instance 
+vpc.tf ==> virtual priate network variables 
+elb.tf ==> load balancers as the sode using to access only application using elb dns only 
+variables.tf ==> all variables " instance type , rams , cpu , network , routes , source code to instance and elb using , security groups " 
+using source code my : 
+https://github.com/hkhcoder/vprofile-project 
+on variables.tf 
+memcach.tf 
+rabbit.tf 
 
 Steps : 
 # on VM  
@@ -75,6 +85,9 @@ issue time sync :
 
 <img width="1191" height="577" alt="image" src="https://github.com/user-attachments/assets/b3fd35dc-1423-4b7a-b4b9-b6258602bda6" />
 <img width="1127" height="893" alt="image" src="https://github.com/user-attachments/assets/aca5c3d4-0d3d-4a58-a211-3a0ed6ed8dd1" />
+terraform plan 
+
+terraform apply 
 
 # db instacne createing successfuuly : 
 
@@ -101,9 +114,13 @@ to access my app should use elb with port 80as it is forward to app instance on 
 
 <img width="1307" height="162" alt="image" src="https://github.com/user-attachments/assets/c218f5ad-6cb5-44ec-ab99-b4f08cf0a74f" />
 access elb : 
+
+<img width="927" height="227" alt="image" src="https://github.com/user-attachments/assets/177e7cc5-bf5a-4ea5-82c2-2616d6e37660" />
+
 <img width="1575" height="291" alt="image" src="https://github.com/user-attachments/assets/6b94f193-7f05-4e43-82e8-8b4aac76083e" />
 
-<img width="1811" height="940" alt="image" src="https://github.com/user-attachments/assets/d68345c4-f869-4ef6-9101-0359a462a97c" />
+<img width="1900" height="982" alt="image" src="https://github.com/user-attachments/assets/96b3ad85-dc0b-4b24-9a94-0f5e0d44704c" />
+
 
 
 
