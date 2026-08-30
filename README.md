@@ -89,13 +89,13 @@ sudo ./aws/install
 
 <img width="1655" height="132" alt="image" src="https://github.com/user-attachments/assets/909dcc0d-cb50-4cf1-9b19-b4d53346e64e" />
 
-<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/c4de3fcd-250c-40ba-a842-3d314f66dd95" />
-
-<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/3d700173-fc3f-413c-8119-b41033510bd3" />
-
 terraform plan 
 
 terraform apply 
+
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/c4de3fcd-250c-40ba-a842-3d314f66dd95" />
+
+<img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/3d700173-fc3f-413c-8119-b41033510bd3" />
 
 <img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/70734a5e-b661-4101-94c3-514972cbd6c3" />
 
@@ -103,8 +103,7 @@ terraform apply
 
 <img width="1127" height="893" alt="image" src="https://github.com/user-attachments/assets/aca5c3d4-0d3d-4a58-a211-3a0ed6ed8dd1" />
 
-
-4- db instacne createing successfuuly : 
+4- DB instacne createing successfuuly : 
 
 <img width="1550" height="247" alt="image" src="https://github.com/user-attachments/assets/fb343540-90a8-4c27-903a-32bacee07f35" />
 
