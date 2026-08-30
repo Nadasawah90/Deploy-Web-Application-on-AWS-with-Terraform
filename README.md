@@ -83,7 +83,7 @@ sudo ./aws/install
 
 ### Hint : 
 
-1- In all Terraform files, we will let Terraform automatically create the VPC, subnets, and CIDR network , We only need to configure the AWS IAM credentials using aws configure , We only specify the AWS Region where we want to deploy the application We do not need to manually create the VPC, subnet, or network before running Terraform. The Terraform configuration is now more automated and creates the required infrastructure automatically.
+In all Terraform files, we will let Terraform automatically create the VPC, subnets, and CIDR network , We only need to configure the AWS IAM credentials using aws configure , We only specify the AWS Region where we want to deploy the application We do not need to manually create the VPC, subnet, or network before running Terraform. The Terraform configuration is now more automated and creates the required infrastructure automatically.
 
 3- I faced a time synchronization issue between the Terraform VM and AWS, which caused AWS authentication problems.
 
