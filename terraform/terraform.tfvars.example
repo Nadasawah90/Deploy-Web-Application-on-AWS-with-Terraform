@@ -1,0 +1,15 @@
+# Copy this file to terraform.tfvars and fill in your own values.
+# terraform.tfvars is ignored by .gitignore - never commit real passwords.
+
+region     = "us-east-1"
+key_name   = "terraform"
+
+# Put your own public IP here so SSH is not open to the whole internet.
+# Find it at https://checkip.amazonaws.com then add /32
+my_ip_cidr = "0.0.0.0/0"
+
+db_username = "admin"
+db_password = "ChangeMe_Db_123"
+
+mq_username = "admin"
+mq_password = "ChangeMe_Mq_LongPassword123"

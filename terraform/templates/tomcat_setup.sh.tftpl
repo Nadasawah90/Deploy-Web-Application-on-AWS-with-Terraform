@@ -1,0 +1,147 @@
+#!/bin/bash
+# Rendered by Terraform - do not edit the generated copy on the instance.
+# Full log: /var/log/cloud-init-output.log  and  /var/log/vprofile-setup.log
+
+exec > >(tee -a /var/log/vprofile-setup.log) 2>&1
+set -x
+
+echo "===== [1/7] Installing packages ====="
+dnf -y install java-11-openjdk java-11-openjdk-devel git maven wget unzip
+
+# MySQL client - needed to load the DB dump into RDS.
+# RHEL 9 ships the 8.0 client as "mysql"; fall back to mariadb if unavailable.
+dnf -y install mysql || dnf -y install mariadb
+
+echo "===== [2/7] Installing Tomcat 9 ====="
+cd /tmp/
+wget -q https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz
+tar xzf apache-tomcat-9.0.75.tar.gz
+
+id tomcat >/dev/null 2>&1 || useradd --home-dir /usr/local/tomcat --shell /sbin/nologin tomcat
+
+mkdir -p /usr/local/tomcat
+cp -r /tmp/apache-tomcat-9.0.75/* /usr/local/tomcat/
+chown -R tomcat:tomcat /usr/local/tomcat
+
+cat <<'EOL' > /etc/systemd/system/tomcat.service
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+
+User=tomcat
+Group=tomcat
+Environment="JAVA_HOME=/usr/lib/jvm/java-11-openjdk"
+Environment="CATALINA_PID=/usr/local/tomcat/temp/tomcat.pid"
+Environment="CATALINA_HOME=/usr/local/tomcat"
+Environment="CATALINA_BASE=/usr/local/tomcat"
+Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+Environment="JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom"
+
+ExecStart=/usr/local/tomcat/bin/startup.sh
+ExecStop=/usr/local/tomcat/bin/shutdown.sh
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+systemctl daemon-reload
+systemctl enable tomcat
+systemctl start tomcat
+
+echo "===== [3/7] Cloning source code ====="
+rm -rf /opt/vprofile-src
+git clone -b Master ${repo_url} /opt/vprofile-src
+cd /opt/vprofile-src
+
+echo "===== [4/7] Waiting for RDS to accept connections ====="
+for i in $(seq 1 30); do
+  if mysqladmin --connect-timeout=5 -h "${rds_host}" -P ${rds_port} -u "${db_user}" -p"${db_pass}" ping >/dev/null 2>&1; then
+    echo "RDS is reachable."
+    break
+  fi
+  echo "RDS not ready yet, attempt $i/30 - sleeping 20s"
+  sleep 20
+done
+
+echo "===== [5/7] Loading database dump ====="
+DUMP="/opt/vprofile-src/src/main/resources/db_backup.sql"
+
+if [ -f "$DUMP" ]; then
+  # RDS does not give the master user SUPER, so strip statements that always
+  # fail there (user/grant management, global variable changes). The "accounts"
+  # database itself is created by RDS via the db_name argument.
+  sed -e 's/CREATE DATABASE/CREATE DATABASE IF NOT EXISTS/Ig' \
+      -e '/^[[:space:]]*GRANT /Id' \
+      -e '/^[[:space:]]*CREATE USER/Id' \
+      -e '/^[[:space:]]*DROP USER/Id' \
+      -e '/^[[:space:]]*FLUSH PRIVILEGES/Id' \
+      -e '/SET @@GLOBAL/Id' \
+      "$DUMP" > /tmp/db_init.sql
+
+  mysql -h "${rds_host}" -P ${rds_port} -u "${db_user}" -p"${db_pass}" "${db_name}" < /tmp/db_init.sql
+  echo "Database import exit code: $?"
+
+  mysql -h "${rds_host}" -P ${rds_port} -u "${db_user}" -p"${db_pass}" -e "SHOW TABLES;" "${db_name}"
+else
+  echo "WARNING: $DUMP not found - skipping database import."
+fi
+
+echo "===== [6/7] Writing application.properties ====="
+cat <<'PROPS' > /opt/vprofile-src/src/main/resources/application.properties
+#JDBC Configuration for Database Connection
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://${rds_host}:${rds_port}/${db_name}?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+jdbc.username=${db_user}
+jdbc.password=${db_pass}
+
+#Memcached Configuration For Active and StandBy Host
+#For Active Host
+memcached.active.host=${memcached_host}
+memcached.active.port=11211
+#For StandBy Host
+memcached.standBy.host=${memcached_host}
+memcached.standBy.port=11211
+
+#RabbitMq Configuration
+rabbitmq.address=${rabbitmq_host}
+rabbitmq.port=5671
+rabbitmq.username=${mq_user}
+rabbitmq.password=${mq_pass}
+
+#Elasticsearch Configuration - not deployed, kept so the Spring context still
+#resolves every placeholder at startup. The search feature will not work.
+elasticsearch.host=localhost
+elasticsearch.port=9300
+elasticsearch.cluster=vprofile
+elasticsearch.node=vprofilenode
+PROPS
+
+echo "----- Effective application.properties (passwords masked) -----"
+sed -e 's/^\(.*password.*=\).*/\1*****/I' /opt/vprofile-src/src/main/resources/application.properties
+
+echo "===== [7/7] Building and deploying ====="
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+cd /opt/vprofile-src
+mvn clean install -DskipTests
+
+WAR=$(ls -1 /opt/vprofile-src/target/*.war 2>/dev/null | head -n 1)
+
+if [ -n "$WAR" ]; then
+  systemctl stop tomcat
+  sleep 5
+  rm -rf /usr/local/tomcat/webapps/ROOT*
+  cp "$WAR" /usr/local/tomcat/webapps/ROOT.war
+  chown -R tomcat:tomcat /usr/local/tomcat/webapps
+  systemctl start tomcat
+  echo "Deployed $WAR as ROOT.war"
+else
+  echo "ERROR: Maven build produced no .war file. Check the build output above."
+  exit 1
+fi
+
+echo "===== Bootstrap finished at $(date) ====="
