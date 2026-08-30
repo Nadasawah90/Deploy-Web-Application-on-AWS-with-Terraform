@@ -2,65 +2,72 @@
 
 Terraform is used to create and configure AWS infrastructure as Infrastructure as Code (IaC), automating the entire environment through configuration files.
 
-## Application Flow: 
+### Application Flow: 
 
 User → Load Balancer → Tomcat → RDS / RabbitMQ / Memcached.
 
-## Infrastructure Flow: 
+### Infrastructure Flow: 
 
 Terraform → AWS Resources → EC2 → Shell Script → Java/Tomcat Application
 
-## Main Terraform resources include:
+### Main Components
+Terraform : Creates AWS infrastructure automatically.
+VPC: Creates the AWS network &Creates subnets and routes.
+Security Groups: Control traffic between AWS resources.
+EC2: Hosts the Java/Tomcat application .
+Shell Script : Installs Java& Installs Tomcat & Deploys the application 
+Load Balancer : Receives traffic on port 80. & Sends traffic to Tomcat on port 8080 & Application is accessed using the Load Balancer DNS.
+RDS : Provides the application database.
+RabbitMQ : Provides messaging between application components.
+Memcached : Provides caching to improves application performance.
 
-1- Terraform : Deploy AWS infrastructure and resources.
-
-2- VPC: Create the network and subnets.
-
-3- Security Groups: Control inbound and outbound traffic between components.
-
-4- EC2: Host the Java application.
-
-5- Shell Script: Install Java, Tomcat, and deploy the application on EC2 .
-6- Load Balancer: Receive traffic on port 80 and forward it to Tomcat.
-
-7- RDS: Provide the managed database for the application.
-
-8- RabbitMQ: Provide messaging and asynchronous communication.
-
-9- Memcached: Provide caching to improve application performance.
-terraform files incluse : 
-terraform.pem ==> key pair of instance 
-vpc.tf ==> virtual priate network variables 
-elb.tf ==> load balancers as the sode using to access only application using elb dns only 
-variables.tf ==> all variables " instance type , rams , cpu , network , routes , source code to instance and elb using , security groups " 
-using source code my : 
-https://github.com/hkhcoder/vprofile-project 
-on variables.tf 
-memcach.tf 
-rabbit.tf 
-
+### Terraform Files
+terraform.pem : EC2 SSH private key.
+variables.tf : Contains project variables {Instance type ,CPU and RAM, Network settings , Routes , source code ,Load Balancer settings}
+vpc.tf : Creates VPC & Creates subnets & Creates routes.
+sec.tf : Creates Security Groups to Controls traffic between resources.
+ec2.tf : Creates the EC2 instance using shell script 
+elb.tf : Creates the Load Balancer & Forwards port 80 to Tomcat port 8080.
+rds.tf: Creates the RDS database.
+rabbit.tf: Creates RabbitMQ.
+memcach.tf : Creates Memcached.
+user-data.sh : Installs Java & Installs Tomcat & Deploys the Java application.
 Steps : 
+
 # on VM  
-1- Download terraform form the official link of terraform  on the centos VM as bleow : 
+
+1- Download terraform form the official link of terraform  on the centos VM as bleow :
+
 sudo yum install -y yum-utils
+
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+
 sudo yum -y install terraform
 
 2- shlould be install AWS CLI to know the credential of AWS to be implement automated my ingrastructure 
+
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
 unzip awscliv2.zip
+
 sudo ./aws/install
 
 # on AWS 
+
 1- create User IAM with administrator access 
+
 <img width="1886" height="813" alt="image" src="https://github.com/user-attachments/assets/6b8661d1-e1c2-4ee9-97e2-44a73a044d8e" />
 
 2-to terraform access on the AWS account should have access key and secrete key 
+
 from the user created " create access key" 
+
 <img width="1887" height="797" alt="image" src="https://github.com/user-attachments/assets/143d463b-b94f-4d92-96ba-9573663ed091" />
 
 note on all files we will let terraform create new VPC and subnet network with CIDR automatiaally only using IAM creditnilas on the AWS configure and spwcicif which reqgion we will use only to deploy app .so we not need to doe the three firstly steps before as i change the file to be automated more .
+
 3- create VPS  on AWS  " Default VPC " ==> 
+
 <img width="887" height="202" alt="image" src="https://github.com/user-attachments/assets/9f788c2b-94ba-4ef8-957d-c154ede607a8" />
 
 4- Default subnet 
