@@ -2,15 +2,15 @@
 
 Terraform is used to create and configure AWS infrastructure as Infrastructure as Code (IaC), automating the entire environment through configuration files.
 
-# Application Flow: 
+## Application Flow: 
 
 User → Load Balancer → Tomcat → RDS / RabbitMQ / Memcached.
 
-# Infrastructure Flow: 
+## Infrastructure Flow: 
 
 Terraform → AWS Resources → EC2 → Shell Script → Java/Tomcat Application
 
-# Main Terraform resources include:
+## Main Terraform resources include:
 
 1- Terraform : Deploy AWS infrastructure and resources.
 
