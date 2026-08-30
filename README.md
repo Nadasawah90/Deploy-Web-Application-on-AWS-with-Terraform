@@ -93,15 +93,16 @@ sudo ./aws/install
 
 <img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/3d700173-fc3f-413c-8119-b41033510bd3" />
 
+terraform plan 
+
+terraform apply 
+
 <img width="1920" height="1040" alt="image" src="https://github.com/user-attachments/assets/70734a5e-b661-4101-94c3-514972cbd6c3" />
 
 <img width="1191" height="577" alt="image" src="https://github.com/user-attachments/assets/b3fd35dc-1423-4b7a-b4b9-b6258602bda6" />
 
 <img width="1127" height="893" alt="image" src="https://github.com/user-attachments/assets/aca5c3d4-0d3d-4a58-a211-3a0ed6ed8dd1" />
 
-terraform plan 
-
-terraform apply 
 
 4- db instacne createing successfuuly : 
 
