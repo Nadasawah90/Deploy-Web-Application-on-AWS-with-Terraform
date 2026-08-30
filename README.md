@@ -113,11 +113,9 @@ terraform apply
 
 <img width="1535" height="270" alt="image" src="https://github.com/user-attachments/assets/43f06998-b631-4921-add1-18a7ec8a24d5" />
 
-# In this project, the Key Pair name is terraform.
+6-In this project, the Key Pair name is terraform & create it : 
 
 <img width="1640" height="111" alt="image" src="https://github.com/user-attachments/assets/a4b54309-f489-4865-8cb5-8e4ff187f199" />
-
-create it 
 
 <img width="1623" height="371" alt="image" src="https://github.com/user-attachments/assets/4d79ae2e-bfa9-4b4f-82fa-4b838904a8c1" />
 
@@ -125,17 +123,17 @@ on VM :
 
 <img width="755" height="108" alt="image" src="https://github.com/user-attachments/assets/33f22cc6-2272-45a6-90a4-0106a96da102" />
 
-check creating progress : 
+7- check creating is in progress : 
 
 <img width="1648" height="227" alt="image" src="https://github.com/user-attachments/assets/cf5b3cfb-929a-4aea-9775-78cd2b433c76" />
 
 <img width="1597" height="363" alt="image" src="https://github.com/user-attachments/assets/6fdbaf05-befa-4c6f-8774-72c7a7397156" />
 
-To access the application, use the ELB on port 80, which forwards the traffic to the application instance on port 8080.
+8- To access the application, use the ELB on port 80, which forwards the traffic to the application instance on port 8080.
 
 <img width="1307" height="162" alt="image" src="https://github.com/user-attachments/assets/c218f5ad-6cb5-44ec-ab99-b4f08cf0a74f" />
 
-Access ELB  : 
+9- Access ELB  : 
 
 <img width="927" height="227" alt="image" src="https://github.com/user-attachments/assets/177e7cc5-bf5a-4ea5-82c2-2616d6e37660" />
 
