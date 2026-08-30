@@ -12,31 +12,50 @@ Terraform → AWS Resources → EC2 → Shell Script → Java/Tomcat Application
 
 ### Main Components
 Terraform : Creates AWS infrastructure automatically.
+
 VPC: Creates the AWS network &Creates subnets and routes.
+
 Security Groups: Control traffic between AWS resources.
+
 EC2: Hosts the Java/Tomcat application .
+
 Shell Script : Installs Java& Installs Tomcat & Deploys the application 
+
 Load Balancer : Receives traffic on port 80. & Sends traffic to Tomcat on port 8080 & Application is accessed using the Load Balancer DNS.
+
 RDS : Provides the application database.
+
 RabbitMQ : Provides messaging between application components.
+
 Memcached : Provides caching to improves application performance.
 
 ### Terraform Files
+
 terraform.pem : EC2 SSH private key.
+
 variables.tf : Contains project variables {Instance type ,CPU and RAM, Network settings , Routes , source code ,Load Balancer settings}
+
 vpc.tf : Creates VPC & Creates subnets & Creates routes.
+
 sec.tf : Creates Security Groups to Controls traffic between resources.
+
 ec2.tf : Creates the EC2 instance using shell script 
+
 elb.tf : Creates the Load Balancer & Forwards port 80 to Tomcat port 8080.
+
 rds.tf: Creates the RDS database.
+
 rabbit.tf: Creates RabbitMQ.
+
 memcach.tf : Creates Memcached.
+
 user-data.sh : Installs Java & Installs Tomcat & Deploys the Java application.
+
 Steps : 
 
-# on VM  
+# VM Preparation :  
 
-1- Download terraform form the official link of terraform  on the centos VM as bleow :
+1- Install terraform from the official link :
 
 sudo yum install -y yum-utils
 
@@ -44,7 +63,7 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashi
 
 sudo yum -y install terraform
 
-2- shlould be install AWS CLI to know the credential of AWS to be implement automated my ingrastructure 
+2- Install AWS CLI to configure AWS credentials and allow Terraform to automatically create and manage the AWS infrastructure.
 
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 
