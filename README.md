@@ -33,7 +33,9 @@ Memcached : Provides caching to improves application performance.
 
 terraform.pem : EC2 SSH private key.
 
-variables.tf : Contains project variables {Instance type ,CPU and RAM, Network settings , Routes , source code ,Load Balancer settings}
+instance.tf : 
+
+variables.tf : Contains project variables {Instance type ,CPU and RAM, Network settings , Routes , source code ,Load Balancer settings & source code repo : "https://github.com/hkhcoder/vprofile-project/blob/local/src"
 
 vpc.tf : Creates VPC & Creates subnets & Creates routes.
 
@@ -45,11 +47,11 @@ elb.tf : Creates the Load Balancer & Forwards port 80 to Tomcat port 8080.
 
 rds.tf: Creates the RDS database.
 
-rabbit.tf: Creates RabbitMQ.
+mq.tf: Creates RabbitMQ.
 
-memcach.tf : Creates Memcached.
+memcache.tf : Creates Memcached.
 
-user-data.sh : Installs Java & Installs Tomcat & Deploys the Java application.
+tomcat_setup.sh : Installs Java & Installs Tomcat & Deploys the Java application.
 
 Steps : 
 
